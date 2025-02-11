@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WillService | Professional Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- ADD GOOGLE FONT LINK HERE (replace with your actual link) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #3b82f6;
+            --background: #ffffff;
+            --text: #1e293b;
+            --muted: #64748b;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background: #0f172a;
+                --text: #f8fafc;
+                --muted: #94a3b8;
+            }
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .professional-bg {
+            background-image: linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)),
+                            url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .professional-bg {
+                background-image: linear-gradient(rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.95)),
+                                url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80'); /* Use dark background */
+            }
+        }
+
+        .portfolio-item {
+            aspect-ratio: 4/3;
+            transition: transform 0.3s ease;
+        }
+
+        /* APPLY THE FONT TO THE LOGO */
+        h1 {
+          font-family: 'Oswald', sans-serif; /*  Replace 'Oswald' with your actual font name */
+          font-weight: 700;  /* Adjust weight as needed */
+        }
+
+        /* ANIMATED UNDERLINE */
+        .underline-animation {
+            position: relative;
+            display: inline-block; /* Important for the animation to work correctly */
+        }
+
+        .underline-animation::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary); /* Use your primary color */
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        .underline-animation:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* FADE-IN ANIMATION (for sections) */
+        .fade-in {
+          opacity: 0;
+          transition: opacity 0.5s ease-in-out;
+        }
+
+        .fade-in.active {
+          opacity: 1;
+        }
+
+        /* WIGGLE ANIMATION */
+        .wiggle {
+            animation: wiggle 1s linear infinite;
+        }
+
+        @keyframes wiggle {
+            0% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+            100% { transform: rotate(-3deg); }
+        }
+
+    </style>
+</head>
+<body class="bg-[var(--background)] text-[var(--text)]">
+    <!-- Navigation -->
+    <header class="sticky top-0 bg-white shadow-sm z-50 dark:bg-slate-800 dark:shadow-slate-700">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-[var(--primary)]">WillService</h1>
+            <div class="hidden md:flex gap-8">
+                <a href="#home" class="hover:text-[var(--primary)] underline-animation">Home</a>
+                <a href="#about" class="hover:text-[var(--primary)] underline-animation">About</a>
+                <a href="#services" class="hover:text-[var(--primary)] underline-animation">Services</a>
+                <a href="#portfolio" class="hover:text-[var(--primary)] underline-animation">Portfolio</a>
+                <a href="#contact" class="hover:text-[var(--primary)] underline-animation">Contact</a>
+            </div>
+            <button class="md:hidden" id="menuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="md:hidden hidden fixed inset-0 bg-[var(--background)] z-40" id="mobileMenu">
+        <div class="container mx-auto p-4 flex flex-col gap-6">
+            <a href="#home" class="text-xl underline-animation">Home</a>
+            <a href="#about" class="text-xl underline-animation">About</a>
+            <a href="#services" class="text-xl underline-animation">Services</a>
+            <a href="#portfolio" class="text-xl underline-animation">Portfolio</a>
+            <a href="#contact" class="text-xl underline-animation">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center professional-bg">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                Professional Solutions for<br>
+                <span class="gradient-text">Digital & Physical Needs</span>
+            </h1>
+            <p class="text-xl text-[var(--muted)] mb-8 max-w-2xl mx-auto">
+                Comprehensive services bridging technology and craftsmanship. From digital designs to physical repairs.
+            </p>
+            <a href="https://wa.me/2348100351157"
+               target="_blank"
+               class="inline-block bg-[var(--primary)] text-white px-8 py-3 rounded-full hover:bg-[var(--secondary)] transition-colors shadow-md hover:shadow-lg transition-shadow duration-300">
+                <i class="fab fa-whatsapp mr-2"></i>Contact on WhatsApp
+            </a>
+        </div>
+    </section>
+
+     <!-- About Us Section -->
+     <section id="about" class="py-20 fade-in">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">About WillService</h2>
+            <div class="max-w-3xl mx-auto">
+                <p class="text-lg text-[var(--muted)] mb-6 wiggle">
+                    WillService is a dynamic service provider dedicated to delivering high-quality solutions across multiple industries. Our expertise spans from graphic design and photo editing to web development, phone repair, and tech solutions. We also specialize in custom furniture design, ensuring creativity and precision in every project.
+                </p>
+                <p class="text-lg text-[var(--muted)] mb-6 wiggle">
+                    At WillService, we are committed to innovation, professionalism, and customer satisfaction. Whether you need a stunning brand identity, expert mobile repair, or a fully customized website, we have the skills and experience to bring your vision to life.
+                </p>
+                <p class="text-lg text-[var(--muted)] mb-6 wiggle">
+                    Our mission is to provide efficient, reliable, and top-notch services that help individuals and businesses thrive in today's digital and physical landscape.
+                </p>
+                <p class="text-lg text-[var(--muted)] font-bold">
+                    Let’s build something amazing together!
+                </p>
+                <p class="text-lg text-[var(--muted)] mt-4 wiggle">
+                    📩 Contact us today to get started.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 fade-in">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">Our Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="servicesContainer"></div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-blue-50 dark:bg-blue-900 fade-in">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">Our Work</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="portfolioContainer"></div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 fade-in">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto bg-white dark:bg-slate-800 rounded-xl shadow-lg p-8">
+                <h2 class="text-4xl font-bold text-center mb-8">Get in Touch</h2>
+                <form class="space-y-6">
+                    <div>
+                        <input type="text" placeholder="Your Name" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-[var(--primary)] outline-none transition-shadow shadow-sm hover:shadow-md">
+                    </div>
+                    <div>
+                        <input type="email" placeholder="Your Email" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-[var(--primary)] outline-none transition-shadow shadow-sm hover:shadow-md">
+                    </div>
+                    <div>
+                        <textarea placeholder="Your Message" rows="5" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-[var(--primary)] outline-none transition-shadow shadow-sm hover:shadow-md"></textarea>
+                    </div>
+                    <button class="w-full bg-[var(--primary)] text-white p-3 rounded-lg hover:bg-[var(--secondary)] transition-colors shadow-md hover:shadow-lg transition-shadow duration-300">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[var(--primary)] text-white">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">WillService</h3>
+                    <p>Your complete solution provider</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="hover:opacity-75 underline-animation">About</a></li>
+                        <li><a href="#services" class="hover:opacity-75 underline-animation">Services</a></li>
+                        <li><a href="#portfolio" class="hover:opacity-75 underline-animation">Portfolio</a></li>
+                        <li><a href="#contact" class="hover:opacity-75 underline-animation">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Connect</h3>
+                    <div class="flex items-center gap-2">
+                        <i class="fab fa-whatsapp"></i>
+                        <a href="https://wa.me/2348100351157" class="hover:opacity-75">+234 810 035 1157</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/20 mt-8 pt-8 text-center">
+                <p>© 2023 WillService. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="fixed inset-0 bg-black/50 hidden items-center justify-center p-4 z-50" id="modal">
+        <div class="bg-white dark:bg-slate-800 rounded-xl max-w-2xl w-full p-8 relative">
+            <button class="absolute top-4 right-4 text-2xl" id="closeModal">×</button>
+            <img id="modalImage" class="w-full h-64 object-cover rounded-lg mb-6">
+            <h3 id="modalTitle" class="text-2xl font-bold mb-2"></h3>
+            <p id="modalCategory" class="text-[var(--primary)] font-medium mb-4"></p>
+            <p id="modalDescription" class="text-[var(--text)]"></p>
+        </div>
+    </div>
+
+    <script>
+        // Data
+        const services = [
+            {
+                title: "Graphic Design",
+                description: "Professional branding and visual identity solutions",
+                icon: "fas fa-palette"
+            },
+            {
+                title: "Photo Editing",
+                description: "Advanced image manipulation and enhancement",
+                icon: "fas fa-camera-retro"
+            },
+            {
+                title: "Phone Repair",
+                description: "Expert mobile device maintenance and repairs",
+                icon: "fas fa-tools"
+            },
+            {
+                title: "Web Development",
+                description: "Full-stack custom website solutions",
+                icon: "fas fa-code"
+            },
+            {
+                title: "Furniture Design",
+                description: "Custom furniture creation and woodworking",
+                icon: "fas fa-chair"
+            },
+            {
+                title: "Tech Solutions",
+                description: "Comprehensive digital services and support",
+                icon: "fas fa-laptop-code"
+            }
+        ];
+
+        const portfolio = [
+            {
+                title: "Brand Identity",
+                category: "Graphic Design",
+                image: "https://images.unsplash.com/photo-1586339949916-3e9457bef6d3?auto=format&fit=crop&w=1470&q=80",
+                description: "Complete corporate branding package for tech startup"
+            },
+            {
+                title: "E-Commerce Platform",
+                category: "Web Development",
+                image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                description: "Custom online store with payment integration"
+            },
+            {
+                title: "Device Repair Service", // Updated title
+                category: "Phone Repair",
+                // Updated image URL
+                image: "https://images.unsplash.com/photo-1544281679-a59fb2359715?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                description: "Mobile device repair and maintenance services"
+            },
+            {
+                title: "Modern Furniture",
+                category: "Furniture Design",
+                image: "https://images.unsplash.com/photo-1581539250439-c96689b516dd?auto=format&fit=crop&w=1365&q=80",
+                description: "Custom wooden furniture collection"
+            },
+            {
+                title: "Product Editing",
+                category: "Photo Editing",
+                image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1470&q=80",
+                description: "Professional product image retouching"
+            },
+            {
+                title: "Business Website",
+                category: "Web Development",
+                image: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=1470&q=80",
+                description: "Responsive business website with CMS"
+            }
+        ];
+
+        // DOM Elements
+        const servicesContainer = document.getElementById('servicesContainer');
+        const portfolioContainer = document.getElementById('portfolioContainer');
+        const modal = document.getElementById('modal');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuBtn = document.getElementById('menuBtn');
+
+        // Initialize
+        function init() {
+            renderServices();
+            renderPortfolio();
+            addEventListeners();
+            observeSections(); // Initialize observer
+        }
+
+        // Render Services
+        function renderServices() {
+            servicesContainer.innerHTML = services.map(service => `
+                <div class="service-card bg-white dark:bg-slate-800 p-8 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-lg mb-6 flex items-center justify-center">
+                        <i class="${service.icon} text-3xl text-[var(--primary)]"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">${service.title}</h3>
+                    <p class="text-[var(--muted)]">${service.description}</p>
+                </div>
+            `).join('');
+        }
+
+        // Render Portfolio
+        function renderPortfolio() {
+            portfolioContainer.innerHTML = portfolio.map(item => `
+                <div class="portfolio-item group cursor-pointer transform transition-transform duration-300 hover:scale-105">
+                    <div class="relative h-full overflow-hidden rounded-xl">
+                        <img src="${item.image}"
+                             alt="${item.title}"
+                             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                             loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent p-6 flex items-end opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div>
+                                <h3 class="text-white text-xl font-bold">${item.title}</h3>
+                                <p class="text-blue-200">${item.category}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Event Listeners
+        function addEventListeners() {
+            // Mobile Menu
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Modal
+            document.addEventListener('click', (e) => {
+                if (e.target.closest('.portfolio-item')) {
+                    const item = portfolio[Array.from(portfolioContainer.children).indexOf(e.target.closest('.portfolio-item'))];
+                    showModal(item);
+                }
+                if (e.target === modal || e.target.closest('#closeModal')) {
+                    modal.classList.add('hidden');
+                }
+            });
+
+            // Smooth Scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+
+        //Intersection Observer for Fade-In
+        function observeSections() {
+          const sections = document.querySelectorAll('.fade-in');
+
+          const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);  // Optional: only fade in once
+              }
+            });
+          }, {
+            threshold: 0.2 // Adjust threshold as needed
+          });
+
+          sections.forEach(section => {
+            observer.observe(section);
+          });
+        }
+
+
+        // Show Modal
+        function showModal(item) {
+            document.getElementById('modalImage').src = item.image;
+            document.getElementById('modalTitle').textContent = item.title;
+            document.getElementById('modalCategory').textContent = item.category;
+            document.getElementById('modalDescription').textContent = item.description;
+            modal.classList.remove('hidden');
+        }
+
+        // Start
+        init();
+    </script>
+</body>
+</html>
